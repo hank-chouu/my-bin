@@ -4,6 +4,11 @@ set -e
 # File to store the list of processed subfolders
 processed_subfolders_file="$PWD/processed_subfolders.txt"
 
+# Check if the file exists
+if [ ! -e "$processed_subfolders_file" ]; then
+    touch "$processed_subfolders_file"
+fi
+
 # Source directory where subfolders are located
 source_root_dir="/home/hank/iPhone/DCIM"
 destination_dir="/run/media/hank/SANDISK/hank/iphone-photo"
