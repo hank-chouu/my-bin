@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+set -e
+docker stop blog-redis
+docker stop blog-mongo
+docker remove blog-redis
+docker remove blog-mongo
+
+docker run -d --name blog-redis -p 6379:6379  redis:latest --requirepass "12345678"
+docker run -d --name blog-mongo  -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=12345678 mongo:latest
+

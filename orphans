@@ -1,0 +1,15 @@
+#!/usr//bin/bash
+
+# Check for orphan packages
+orphans=$(pacman -Qdtq)
+
+# If there are orphan packages, display them and remove them
+if [ -n "$orphans" ]; then
+    echo "Orphan packages found:"
+    echo "$orphans"
+    echo "Removing orphan packages..."
+    sudo pacman -Rns $orphans
+    echo "Orphan packages removed."
+else
+    echo "No orphan packages found."
+fi

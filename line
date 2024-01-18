@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+chromium \
+ --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html \
+ --window-size=800,600 \
+ --window-position=400,100 \
+ &> /dev/null

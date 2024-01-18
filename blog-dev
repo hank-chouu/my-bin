@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+set -e
+# start up containers
+docker start blog-redis
+docker start blog-mongo
+# start poetry env
+cd ~/repos/blog
+poetry run python app.py
