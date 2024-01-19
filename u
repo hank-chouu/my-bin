@@ -1,0 +1,38 @@
+#!/usr/bin/expect -f
+
+# Specify the absolute path to the dotfile
+set pw_file "$env(HOME)/bin/.mypw"
+
+# Check if the dotfile exists
+if { [file exists $pw_file] } {
+    # Dotfile exists, read its contents
+    set mypw [exec cat $pw_file]
+
+    # Run the pacman command using expect
+    spawn sudo pacman -Syu
+    set timeout 30
+    expect "*assword*"
+    send -- "$mypw\r"
+    expect {
+        "*installation*" {
+            send -- "Y\r"
+            exp_continue
+        }
+        "*there is nothing to do*" {
+            puts "No updates available. Exiting script."
+            exit 0
+        }
+    }
+    expect eof
+} else {
+    # Dotfile does not exist, uses regular update
+    spawn sudo pacman -Syu
+    set timeout 30
+    expect {
+        "*assword*" {
+            interact
+        }
+        eof
+    }
+}
+
