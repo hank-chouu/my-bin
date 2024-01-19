@@ -19,7 +19,6 @@ if { [file exists $pw_file] } {
             exp_continue
         }
         "*there is nothing to do*" {
-            puts "No updates available. Exiting script."
             exit 0
         }
     }
