@@ -16,7 +16,7 @@ if { [file exists $pw_file] } {
     expect {
         "*installation*" {
             send -- "Y\r"
-            exp_continue
+            exit 0
         }
         "*there is nothing to do*" {
             exit 0
@@ -26,12 +26,6 @@ if { [file exists $pw_file] } {
 } else {
     # Dotfile does not exist, uses regular update
     spawn sudo pacman -Syu
-    set timeout 30
-    expect {
-        "*assword*" {
-            interact
-        }
-        eof
-    }
+    interact
 }
 
