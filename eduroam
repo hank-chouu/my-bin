@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+set -e
+if [ "$#" -lt 1 ]; then
+    echo "Usage: eduroam <wifi-name>"
+    exit 1
+fi
+nmcli connection modify $1 802-1x.phase1-auth-flags 32
+echo "setting phase1-auth-flags=32 for $1"
+echo "restarting Network Manager..."
+sudo systemctl restart NetworkManager
+echo "Done."
