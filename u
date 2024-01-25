@@ -12,15 +12,10 @@ if { [file exists $pw_file] } {
     spawn sudo pacman -Syu
     set timeout 30
     expect "*assword*"
-    send -- "$mypw\r"
+    send "$mypw\r"
     expect {
-        "*installation*" {
-            send -- "Y\r"
-            exit 0
-        }
-        "*there is nothing to do*" {
-            exit 0
-        }
+        "*nstallation*" { send "Y\r" }
+        "*there is nothing to do*" { exit 0 }
     }
     expect eof
 } else {
