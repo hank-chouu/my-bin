@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+if [ "$1" = "push" ]
+then
+    rclone sync /home/hank/nthu-stat/ gdrive:nthu-stat/ --transfers 32 --checkers 64 -P
+elif [ "$1" = "pull" ]
+then
+    rclone sync gdrive:nthu-stat/ /home/hank/nthu-stat/ --transfers 32 --checkers 64 -P
+fi
