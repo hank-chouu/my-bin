@@ -1,4 +1,4 @@
-#!/usr//bin/bash
+#!/bin/bash
 
 # Check for orphan packages
 orphans=$(pacman -Qdtq)

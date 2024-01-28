@@ -10,7 +10,7 @@ if { [file exists $pw_file] } {
 
     # Run the pacman command using expect
     spawn sudo pacman -Syu
-    set timeout 30
+    set timeout -1
     expect "*assword*"
     send "$mypw\r"
     expect {

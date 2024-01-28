@@ -1,1 +1,2 @@
+#!/bin/bash
 btrfs filesystem usage /
