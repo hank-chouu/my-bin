@@ -14,10 +14,9 @@ if { [file exists $pw_file] } {
     expect "*assword*"
     send "$mypw\r"
     expect {
-        "*nstallation*" { send "Y\r" }
+        "*nstallation*" { interact }
         "*there is nothing to do*" { exit 0 }
     }
-    expect eof
 } else {
     # Dotfile does not exist, uses regular update
     spawn sudo pacman -Syu
