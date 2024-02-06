@@ -13,19 +13,19 @@ while getopts ":rnm" opt; do
     n )
       new=true
       ;;
-    m )
-      rm=true
+    c )
+      clear=true
       ;;
     \? )
-      echo "Usage: $0 [-r] [-n] [-m]"
+      echo "Usage: $0 [-r] [-n] [-c]"
       exit 1
       ;;
   esac
 done
 
 # Check if more than one option is specified
-if [ "$((${reset} + ${new} + ${rm}))" -gt 1 ]; then
-  echo "Error: Only one of -r, -n, or -m can be specified at a time."
+if [ "$((${reset} + ${new} + ${clear}))" -gt 1 ]; then
+  echo "Error: Only one of -r, -n, or -c can be specified at a time."
   exit 1
 fi
 
@@ -41,7 +41,7 @@ elif [ "$new" = true ]; then
   docker run -d --name blog-redis -p 6379:6379 redis:latest --requirepass "12345678" > /dev/null
   docker run -d --name blog-mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=12345678 mongo:latest > /dev/null
   echo "containers created."
-elif [ "$rm" = true ]; then
+elif [ "$clear" = true ]; then
   (docker stop blog-redis || true) > /dev/null
   (docker rm blog-redis || true) > /dev/null
   (docker stop blog-mongo || true) > /dev/null
@@ -53,7 +53,6 @@ else
   docker start blog-mongo > /dev/null
   echo "containers started."
   # start poetry env
-  cd /home/hank/my-github-repo/BlogYourWay
+  cd /home/hank/github/BlogYourWay
   poetry run python app.py
 fi
-
