@@ -3,7 +3,7 @@ set -e
 
 reset=false
 new=false
-rm=false
+clear=false
 
 while getopts ":rnm" opt; do
   case ${opt} in
