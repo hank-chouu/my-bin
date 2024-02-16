@@ -1,6 +1,6 @@
-#!/usr/bin/bash
-chromium \
+#!/bin/bash
+nohup chromium \
  --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html \
  --window-size=800,600 \
  --window-position=400,100 \
- &> /dev/null
+&> /dev/null &
