@@ -2,8 +2,8 @@
 set -e
 if [ "$1" = "push" ]
 then
-    rclone sync /home/hank/nthu-stat/ gdrive:nthu-stat/ --transfers 32 --checkers 64 -P
+    rclone sync /home/hank/nthu-stat/ gdrive:nthu-stat/ --transfers 32 --checkers 64 -P --exclude=".git/**" --exclude=".Rhistory"
 elif [ "$1" = "pull" ]
 then
-    rclone sync gdrive:nthu-stat/ /home/hank/nthu-stat/ --transfers 32 --checkers 64 -P
+    rclone sync gdrive:nthu-stat/ /home/hank/nthu-stat/ --transfers 32 --checkers 64 -P --exclude=".git/**" --exclude=".Rhistory"
 fi
