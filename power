@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ "$#" -lt 1 ]; then
+    echo "Usage: power <per, bal, saver>"
+    exit 1
+fi
+if [ $1 == "saver" ]; then
+	powerprofilesctl set power-saver
+	echo "Set power profile to power-saver"
+elif [ $1 == "bal" ]; then
+	powerprofilesctl set balanced
+	echo "Set power profile to balanced"
+elif [ $1 == "per" ]; then
+	powerprofilesctl set performance
+	echo "Set power profile to performance"
+else
+	echo "Unknown argument"
+fi
