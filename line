@@ -1,5 +1,6 @@
 #!/bin/bash
 nohup chromium \
+ --gtk-version=4 \
  --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html \
  --window-size=800,600 \
  --window-position=400,100 \
